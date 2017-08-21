@@ -1,0 +1,176 @@
+//
+//  GlobalMacro.pch
+//  
+//
+//  Created by ioszhb on 2017/8/21.
+//
+//
+
+
+
+
+#ifndef GlobalMacro_pch
+#define GlobalMacro_pch
+
+#define kWS(weakSelf) __weak __typeof(&*self)weakSelf = self;
+
+
+
+/**** 打印 ****/
+#ifdef DEBUG
+#   define kDLog(fmt, ...) NSLog((@"%s [Line %d] " fmt), __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__);
+#else
+#endif
+
+
+
+
+
+
+/**** 常规 *****/
+#define kScreenW        ([UIScreen mainScreen].bounds.size.width)
+#define kScreenH        ([UIScreen mainScreen].bounds.size.height)
+#define kScreenScale    [UIScreen mainScreen].scale * 1.0f
+#define kTabBarH        49.0f
+#define kStatusBarH     20.0f
+#define kNavigationBarH 44.0f
+#define kWindow         [UIApplication sharedApplication].keyWindow
+
+
+
+
+
+
+/**** 不同iphone ****/
+#define kIPhone4    ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(640, 960), [[UIScreen mainScreen] currentMode].size) : NO)
+#define kIPhone5    ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(640, 1136), [[UIScreen mainScreen] currentMode].size) : NO)
+#define kIPhone6    ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(750, 1334), [[UIScreen mainScreen] currentMode].size) : NO)
+#define kIPhone6P   ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? (CGSizeEqualToSize(CGSizeMake(1125, 2001), [[UIScreen mainScreen] currentMode].size) || CGSizeEqualToSize(CGSizeMake(1242, 2208), [[UIScreen mainScreen] currentMode].size)) : NO)
+
+
+/**** 不同设备iphone/iPad/iPod ****/
+#define kIsiPhone   (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)
+#define kIsiPad     (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+#define kIsiPod     ([[[UIDevice currentDevice] model] isEqualToString:@"iPod touch"])
+
+/**** 判断操作系统版本 ****/
+#define ksystemVersionFloat     [[[UIDevice currentDevice] systemVersion] floatValue]
+#define ksystemVersionString    ([[UIDevice currentDevice] systemVersion])
+#define ksystemLanguage         ([[NSLocale preferredLanguages] objectAtIndex:0])
+
+#define kiOS7 ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0&&[[[UIDevice currentDevice] systemVersion] floatValue]<8.0)
+#define kiOS8 ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0)
+//状态栏高度
+#define kStatusBarH     (kiOS7 ||kiOS8? 20.0f : 0.0f)
+
+
+/**** 判断真机还是模拟器 ****/
+#if TARGET_OS_IPHONE
+#define kisiPhone   NO
+#else
+#define kisiPhone   YES
+#endif
+
+/**** 颜色 ****/
+#define kColorHex(hexValue)     [UIColor colorWithRed:((float)((hexValue & 0xFF0000) >> 16)) / 255.0 green:((float)((hexValue & 0xFF00) >> 8)) / 255.0 blue:((float)(hexValue & 0xFF)) / 255.0 alpha:1.0f]//16进制->10进制,并返回
+#define kColorRGB(r,g,b,a)      [UIColor colorWithRed:(r)/255.0f green:(g)/255.0f blue:(b)/255.0f alpha:(a)]//获取RGB颜色
+#define kColorRand()            [UIColor colorWithRed:(arc4random()%256)/255.0f green:(arc4random()%256)/255.0f blue:(arc4random()%256)/255.0f alpha:1.0]//获任意颜色
+
+
+/** 快速查询一段代码的执行时间 */
+/** 用法:
+ kTick
+ do your work here
+ kTock
+ */
+#define kTick           NSDate *startTime = [NSDate date];
+#define kTock           NSLog(@"Time:%f", -[startTime timeIntervalSinceNow]);
+//#define kTock          NSLog(@"\n%@所用时间%f",NSStringFromSelector(_cmd),-[startTime timeIntervalSinceNow]);
+
+
+
+
+
+
+
+
+
+
+
+/**** 单例宏 ****/
+#define kSingleton_h(bbgName) +(instancetype)share##bbgName
+#if __has_feature(objc_arc) //ARC
+#define kSingleton_m(bbgName) \
+static id _instace; \
++(id)allocWithZone:(struct _NSZone *)zone \
+{ \
+static dispatch_once_t onceToken;\
+dispatch_once(&onceToken,^{ \
+_instace = [super allocWithZone:zone];\
+});\
+return _instace;\
+}\
+\
++(instancetype)share##bbgName\
+{\
+static dispatch_once_t onceToken;\
+dispatch_once(&onceToken,^{\
+_instace = [[self alloc]init];\
+});\
+return _instace;\
+}\
+
+#else
+
+#define kSingleton_m(bbgName) \
+static id _instace; \
++(id)allocWithZone:(struct _NSZone *)zone \
+{ \
+static dispatch_once_t onceToken;\
+dispatch_once(&onceToken,^{ \
+_instace = [super allocWithZone:zone];\
+});\
+return _instace;\
+}\
+\
++(instancetype)share##bbgName\
+{\
+static dispatch_once_t onceToken;\
+dispatch_once(&onceToken,^{\
+_instace = [[self alloc]init];\
+});\
+return _instace;\
+}\
+-(oneway void)release\
+{\
+\
+}\
+\
+-(id)autorelease\
+{\
+return _instace;\
+}\
+\
+-(id)retain\
+{\
+return _instace;\
+}\
+\
++(id)copyWithZone:(struct _NSZone *)zone\
+{\
+return _instace;\
+}\
+\
+-(NSUInteger)retainCount\
+{\
+return 1;\
+}
+
+#endif
+#endif /* GlobalMacro_pch */
+
+
+//#ifdef RELEASE
+//#define NSLog(...) kRLog(__FILE__, __LINE__, __FUNCTION__, nil, 0, __VA_ARGS__)
+//#else
+//#endif

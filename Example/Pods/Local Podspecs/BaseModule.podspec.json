@@ -1,0 +1,53 @@
+{
+  "name": "BaseModule",
+  "version": "0.1.0",
+  "summary": "BaseModule",
+  "description": "基本宏定义/category/功能模块",
+  "homepage": "https://github.com/zhb_mymail@163.com/BaseModule",
+  "license": {
+    "type": "MIT",
+    "file": "LICENSE"
+  },
+  "authors": {
+    "zhb_mymail@163.com": "developzhb@163.com"
+  },
+  "source": {
+    "git": "https://github.com/zhb_mymail@163.com/BaseModule.git",
+    "tag": "0.1.0"
+  },
+  "platforms": {
+    "ios": "8.0"
+  },
+  "source_files": "BaseModule/Classes/**/*",
+  "subspecs": [
+    {
+      "name": "Category",
+      "source_files": "BaseModule/Classes/Category/**/*"
+    },
+    {
+      "name": "Function-module",
+      "subspecs": [
+        {
+          "name": "Exception",
+          "source_files": "BaseModule/Classes/Function-module/Exception/**/*"
+        },
+        {
+          "name": "MemoryWatch",
+          "source_files": "BaseModule/Classes/Function-module/MemoryWatch/**/*"
+        },
+        {
+          "name": "QRScan",
+          "source_files": "BaseModule/Classes/Function-module/QRScan/**/*"
+        },
+        {
+          "name": "SandBox",
+          "source_files": "BaseModule/Classes/Function-module/SandBox/**/*"
+        }
+      ]
+    },
+    {
+      "name": "Macro",
+      "source_files": "BaseModule/Classes/Macro/**/*"
+    }
+  ]
+}
