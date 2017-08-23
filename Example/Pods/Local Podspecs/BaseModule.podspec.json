@@ -48,6 +48,10 @@
     {
       "name": "Macro",
       "source_files": "BaseModule/Classes/Macro/**/*"
+    },
+    {
+      "name": "ThirdClass",
+      "source_files": "BaseModule/Classes/ThirdClass/**/*"
     }
   ]
 }

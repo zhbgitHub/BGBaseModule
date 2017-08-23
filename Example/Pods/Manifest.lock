@@ -3,6 +3,7 @@ PODS:
     - BaseModule/Category (= 0.1.0)
     - BaseModule/Function-module (= 0.1.0)
     - BaseModule/Macro (= 0.1.0)
+    - BaseModule/ThirdClass (= 0.1.0)
   - BaseModule/Category (0.1.0)
   - BaseModule/Function-module (0.1.0):
     - BaseModule/Function-module/Exception (= 0.1.0)
@@ -14,6 +15,7 @@ PODS:
   - BaseModule/Function-module/QRScan (0.1.0)
   - BaseModule/Function-module/SandBox (0.1.0)
   - BaseModule/Macro (0.1.0)
+  - BaseModule/ThirdClass (0.1.0)
 
 DEPENDENCIES:
   - BaseModule (from `../`)
@@ -23,7 +25,7 @@ EXTERNAL SOURCES:
     :path: ../
 
 SPEC CHECKSUMS:
-  BaseModule: b688df5542830cfe3c42659898bc0e60fc160e2c
+  BaseModule: cf4c793206f735f4e5e50d8707c7d10083534d9d
 
 PODFILE CHECKSUM: 34b815366f9884040dcf232ec42d19a341cc459b
 

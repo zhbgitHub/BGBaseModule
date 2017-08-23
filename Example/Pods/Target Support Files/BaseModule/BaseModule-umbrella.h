@@ -10,9 +10,11 @@
 #endif
 #endif
 
+#import "NSString+CategoryFile.h"
 #import "BGMemoryWatch.h"
 #import "BGScanQR.h"
 #import "BGSandboxFile.h"
+#import "NSString+CategoryFile.h"
 #import "BGMemoryWatch.h"
 #import "BGScanQR.h"
 #import "BGSandboxFile.h"

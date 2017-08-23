@@ -42,6 +42,11 @@ Pod::Spec.new do |s|
     macro.source_files = 'BaseModule/Classes/Macro/**/*'
   end
 
+  s.subspec 'ThirdClass' do |thirdClass|
+    thirdClass.source_files = 'BaseModule/Classes/ThirdClass/**/*'
+  end
+
+
 end
 
 

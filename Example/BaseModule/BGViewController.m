@@ -4,9 +4,10 @@
 //
 //  Created by zhb_mymail@163.com on 08/21/2017.
 //  Copyright (c) 2017 zhb_mymail@163.com. All rights reserved.
-//
+//  
 
 #import "BGViewController.h"
+#import <BaseModule/NSString+CategoryFile.h>
 
 @interface BGViewController ()
 
@@ -17,7 +18,14 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
+    NSString *adaf = @"  hello  world ! hello  world   ! hello  world ! hello  world ! hello  world ! fadsfa ";
+    adaf = [NSString str_deleteRedundanceSpaceBar:adaf];
+    
+    NSLog(@"%@", adaf);
+    
+
+
+
 }
 
 - (void)didReceiveMemoryWarning
