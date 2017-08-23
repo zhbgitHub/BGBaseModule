@@ -46,6 +46,10 @@ Pod::Spec.new do |s|
     thirdClass.source_files = 'BaseModule/Classes/ThirdClass/**/*'
   end
 
+  s.subspec 'UI-module' do |uiMd|
+    uiMd.source_files = 'BaseModule/Classes/ThirdClass/**/*'
+  end
+
 
 end
 
